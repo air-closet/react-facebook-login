@@ -49,18 +49,6 @@ class FacebookLogin extends React.Component {
       document.body.appendChild(fbRoot);
     }
 
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        version: `v${version}`,
-        appId,
-        xfbml,
-        cookie,
-      });
-
-      if (autoLoad || window.location.search.includes('facebookdirect')) {
-         window.FB.getLoginStatus(this.checkLoginAfterRefresh);
-      }
-    };
     // Load the SDK asynchronously
     ((d, s, id) => {
       const element = d.getElementsByTagName(s)[0];
@@ -71,9 +59,18 @@ class FacebookLogin extends React.Component {
       js.src = `//connect.facebook.net/${language}/all.js`;
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
+
+    window.FB.init({
+      version: `v${version}`,
+      appId,
+      xfbml,
+      cookie,
+    });
+
+    if (autoLoad || window.location.search.includes('facebookdirect')) {
+      window.FB.getLoginStatus(this.checkLoginAfterRefresh);
+    }
   }
-
-
 
   componentDidMount() {
     const { appId, xfbml, cookie, version, autoLoad, language } = this.props;
