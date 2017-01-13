@@ -49,7 +49,7 @@ class FacebookLogin extends React.Component {
       document.body.appendChild(fbRoot);
     }
 
-    // Load the SDK asynchronously
+    // Load the SDK synchronously
     ((d, s, id) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -70,41 +70,6 @@ class FacebookLogin extends React.Component {
     if (autoLoad || window.location.search.includes('facebookdirect')) {
       window.FB.getLoginStatus(this.checkLoginAfterRefresh);
     }
-  }
-
-  componentDidMount() {
-    const { appId, xfbml, cookie, version, autoLoad, language } = this.props;
-    let fbRoot = document.getElementById('fb-root');
-
-    if (!fbRoot) {
-      fbRoot = document.createElement('div');
-      fbRoot.id = 'fb-root';
-
-      document.body.appendChild(fbRoot);
-    }
-
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        version: `v${version}`,
-        appId,
-        xfbml,
-        cookie,
-      });
-
-      if (autoLoad || window.location.search.includes('facebookdirect')) {
-        window.FB.getLoginStatus(this.checkLoginAfterRefresh);
-      }
-    };
-    // Load the SDK asynchronously
-    ((d, s, id) => {
-      const element = d.getElementsByTagName(s)[0];
-      const fjs = element;
-      let js = element;
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
-      js.src = `//connect.facebook.net/${language}/all.js`;
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
   }
 
   responseApi = (authResponse) => {
