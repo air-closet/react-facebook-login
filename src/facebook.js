@@ -132,11 +132,11 @@ class FacebookLogin extends React.Component {
     }
   };
 
-  click = () => {
+  click = (e) => {
     const { scope, appId, onClick, reAuthenticate } = this.props;
 
     if (typeof onClick === 'function') {
-      onClick();
+      onClick(e);
     }
 
     let isMobile = false;
