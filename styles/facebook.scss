@@ -18,7 +18,7 @@ $font-family-default: 'Helvetica', sans-serif;
   border-style: solid;
   color: #FFF;
   cursor: pointer;
-  display: inline-block;
+  display: inline;
   font-size: calc-responsive(14, 468, 18, 1920);
   text-decoration: none;
   text-transform: uppercase;
@@ -46,5 +46,5 @@ $font-family-default: 'Helvetica', sans-serif;
   .fa {
     margin-right: calc-responsive(5, 468, 10, 1920);
   }
-  
+
 }
